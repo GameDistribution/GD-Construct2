@@ -147,12 +147,13 @@ cr.plugins_.vooxe = function(runtime)
 	{
 		if (!isSupported) return;
 		
-		if (typeof (gdApi) === "undefined")
+		if (typeof (gdApi.showBanner) === "undefined")
 		{
-			cr.logexport("Vooxe Googleads Plugin is not initiliazed.");
+			cr.logexport("Vooxe Googleads Plugin is not initiliazed or AdBlocker");
+			this.vooxe["onResumeGame"]();
 			return;
 		}
-
+		
 		gdApi.showBanner("{_key:"+key+"}");
 		cr.logexport("ShowBanner Key: "+key);
 		
@@ -163,9 +164,10 @@ cr.plugins_.vooxe = function(runtime)
 	{
 		if (!isSupported) return;
 		
-		if (typeof (gdApi) === "undefined")
+		if (typeof (gdApi.play) === "undefined")
 		{
 			cr.logexport("Vooxe Googleads Plugin is not initiliazed.");
+			this.vooxe["onResumeGame"]();
 			return;
 		}
 
@@ -176,9 +178,10 @@ cr.plugins_.vooxe = function(runtime)
 	{
 		if (!isSupported) return;
 		
-		if (typeof (gdApi) === "undefined")
+		if (typeof (gdApi.customLog) === "undefined")
 		{
 			cr.logexport("Vooxe Googleads Plugin is not initiliazed.");
+			this.vooxe["onResumeGame"]();
 			return;
 		}
 
