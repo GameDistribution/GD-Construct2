@@ -6,7 +6,7 @@
 		"version":		"1.0",
 		"description":	"Google ads for Vooxe",
 		"author":		"Vooxe",
-		"help url":		"http://www.gamedistribution.com/Api/",
+		"help url":		"https://github.com/GameDistribution/GD-Construct2/wiki",
 		"category":		"Monetisation",
 		"type":			"object",			// appears in layout
 		"rotatable":	false,
