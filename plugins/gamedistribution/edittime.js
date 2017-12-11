@@ -4,7 +4,7 @@
 		"name":			"Vooxe Google Ads",
 		"id":			"vooxe",
 		"version":		"1.0",
-		"description":	"Google ads for Vooxe",
+		"description":	"Gamedistribution.com HTML5 SDK",
 		"author":		"Vooxe",
 		"help url":		"https://github.com/GameDistribution/GD-Construct2/wiki",
 		"category":		"Monetisation",
@@ -14,30 +14,30 @@
 	};
 };
 
-AddCondition(0, 0, "Is showing banner ad", "Ads", "Is showing banner ad", "True if currently showing a banner ad.", "IsShowingBanner");
-AddCondition(2, cf_trigger, "On Initiliaze ads", "Ads", "On Initiliaze ads", "Triggered when Vooxe ads system is ready.", "onInit");
-AddCondition(3, cf_trigger, "On Error occurs", "Ads", "On Error occurs", "Triggered when an error occured.", "onError");
-AddCondition(4, cf_trigger, "On Resume game", "Ads", "On Resume game", "Triggered when an banner closed or not recieved.", "onResumeGame");
-AddCondition(5, cf_trigger, "On Pause game", "Ads", "On Pause game", "Triggered when banner ad is received and ready to show.", "onPauseGame");
+AddCondition(0, 0, "Is showing banner ad", "Ads", "Is showing an advertisement", "True if currently showing an advertisement.", "IsShowingBanner");
+AddCondition(2, cf_trigger, "On SDK loaded", "Ads", "On SDK loaded", "Called when the SDK is ready.", "onInit");
+AddCondition(3, cf_trigger, "On Error occurs", "Ads", "On Error", "Called when an error has occured.", "onError");
+AddCondition(4, cf_trigger, "On Resume game", "Ads", "On resume game", "Called when an advertisement is closed or not received.", "onResumeGame");
+AddCondition(5, cf_trigger, "On Pause game", "Ads", "On pause game", "Called when an advertisement is received and ready to show.", "onPauseGame");
 
 // Actions
 AddStringParam("Key Name", "Key for analytics");
-AddAction(0, af_none, "Show Banner", "Ads", "Show banner with key <i>{0}</i> value", "Show a banner ad with given key on the screen while the game is running.", "ShowBanner");
+AddAction(0, af_none, "Show Banner", "Ads", "Show an advertisement.", "Show an advertisement.", "ShowBanner");
 
-AddAction(1, 0, "Play", "Ads", "Counts Play", "Counts how many times clicked play button", "PlayLog");
+AddAction(1, 0, "Play", "Ads", "Counts Play", "Counts how many times the play button has been clicked.", "PlayLog");
 
 AddStringParam("Key Name", "Key for analytics");
-AddAction(2, af_none, "Custom Log", "Ads", "Saves CustomLog with key <i>{0}</i> value", "Counts how many times custom action called", "CustomLog");
+AddAction(2, af_none, "Custom Log", "Ads", "Saves CustomLog with key <i>{0}</i> value", "Counts how many times a custom action called", "CustomLog");
 
-AddAction(3, 0, "Init API", "Ads", "Initiliaze ads system", "Loads Vooxe Html5 GdApi that hides the running game and display it when ready.", "InitAds");
+AddAction(3, 0, "Init SDK", "Ads", "Load the SDK", "Loads the Gamedistribution.com HTML5 SDK for showing advertisements.", "InitAds");
 
 ACESDone();
 
 // Property grid properties for this plugin
 var property_list = [	
-	new cr.Property(ept_section,	"GD Account",	"",	"Account settings. You can get GameId and UserId from http://www.gamedistribution.com, register first to GD"),
-	new cr.Property(ept_text,		"GameId",		"",	"Your Game Id, you can find it after upload a game to GameDistribution"),
-	new cr.Property(ept_text,		"UserId",		"",	"Your UserId")
+	new cr.Property(ept_section,	"GD Account",	"",	"Account settings. You can get your GameId and UserId from https://gamedistribution.com."),
+	new cr.Property(ept_text,		"GameId",		"",	"Your GameId, you can find it after uploading a game to Gamedistribution.com."),
+	new cr.Property(ept_text,		"UserId",		"",	"Your UserId, you can find it after uploading a game to Gamedistribution.com.")
 	];
 
 // Called by IDE when a new object type is to be created

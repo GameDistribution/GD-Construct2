@@ -50,7 +50,7 @@ cr.plugins_.vooxe = function(runtime)
 	{		
 		if (!window["vooxe"] && !window["GD_OPTIONS"])
 		{
-			cr.logexport("[Construct 2] Gamedistribution.com SDK is required to show googleads ads with Cordova; other platforms are not supported");
+			cr.logexport("[Construct 2] Gamedistribution.com SDK is required to show advertisements within Cordova; other platforms are not supported.");
 			return;
 		}		
 		
@@ -70,7 +70,7 @@ cr.plugins_.vooxe = function(runtime)
 		
 		this.vooxe["onError"] = function (data)
 		{
-			cr.logexport("Gamedistribution.com SDK onError: "+data);
+			cr.logexport("Gamedistribution.com SDK: onError: "+data);
 			self.isShowingBannerAd = true;
 			self.runtime.trigger(cr.plugins_.vooxe.prototype.cnds.onError, self);
 		};
@@ -186,7 +186,7 @@ cr.plugins_.vooxe = function(runtime)
 
 		if (typeof (window["gdsdk"]["play"]) === "undefined")
 		{
-			cr.logexport("Vooxe Googleads Plugin is not initiliazed.");
+			cr.logexport("Gamedistribution.com SDK is not loaded.");
 			this.vooxe["onResumeGame"]();
 			return;
 		}
@@ -200,7 +200,7 @@ cr.plugins_.vooxe = function(runtime)
 
 		if (typeof (window['gdsdk']["customLog"]) === "undefined")
 		{
-			cr.logexport("Vooxe Googleads Plugin is not initiliazed.");
+			cr.logexport("Gamedistribution.com SDK is not loaded.");
 			this.vooxe["onResumeGame"]();
 			return;
 		}
