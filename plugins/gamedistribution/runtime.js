@@ -61,16 +61,16 @@ cr.plugins_.vooxe = function(runtime)
 		// Attach events
 		var self = this;
 		
-		this.vooxe["onInit"] = function (data)
+		this.vooxe["onInit"] = function ()
 		{
-			cr.logexport(data.Msg);
+            cr.logexport("Gamedistribution.com SDK: onInit");
 			self.isShowingBannerAd = false;
 			self.runtime.trigger(cr.plugins_.vooxe.prototype.cnds.onInit, self);
 		};
 		
-		this.vooxe["onError"] = function (data)
+		this.vooxe["onError"] = function ()
 		{
-			cr.logexport("Gamedistribution.com SDK: onError: "+data);
+			cr.logexport("Gamedistribution.com SDK: onError");
 			self.isShowingBannerAd = true;
 			self.runtime.trigger(cr.plugins_.vooxe.prototype.cnds.onError, self);
 		};
