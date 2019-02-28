@@ -1,4 +1,4 @@
-## Test game
+## Construct 2 Template with SDK Initialized
 
 [Download Construct 2 Template](https://github.com/GameDistribution/GD-Construct2/blob/master/example/construct_2_game_with_sdk.capx)
 
