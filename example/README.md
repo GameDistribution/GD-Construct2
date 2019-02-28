@@ -1,4 +1,4 @@
-## Construct 2 Game Template with SDK Initialized
+## Construct 2 Game Template with GD-SDK
 
 Download the Construct 2 Template Game: [construct_2_game_with_sdk.capx](https://github.com/GameDistribution/GD-Construct2/blob/master/example/construct_2_game_with_sdk.capx?raw=true)
 
