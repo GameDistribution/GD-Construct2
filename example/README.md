@@ -1,6 +1,8 @@
 ## Construct 2 Template with SDK Initialized
 
-Download Construct 2 [Template](https://github.com/GameDistribution/GD-Construct2/blob/master/example/construct_2_game_with_sdk.capx?raw=true)
+Download the Construct 2 Template Game:
+
+[construct_2_game_with_sdk.capx](https://github.com/GameDistribution/GD-Construct2/blob/master/example/construct_2_game_with_sdk.capx?raw=true)
 
 1. Load the .capx file in Construct 2.
 2. In the menu bar, click 'Run layout'.
