@@ -128,7 +128,7 @@ AddAction(
   "Ads",
   "Preload a rewarded advertisement.",
   "Preload a rewarded advertisement.",
-  "PreloadAd"
+  "PreloadRewardedAd"
 );
 
 ACESDone();
