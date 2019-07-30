@@ -86,7 +86,7 @@ cr.plugins_.GD_SDK = function(runtime) {
     this.gdsdk["InitAds"] = function() {
       window["GD_OPTIONS"] = {
         gameId: self.properties[0],
-        userId: self.properties[1],
+        // userId: self.properties[1],
         advertisementSettings: {
           autoplay: false
         },
