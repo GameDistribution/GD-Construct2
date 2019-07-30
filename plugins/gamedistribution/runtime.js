@@ -218,7 +218,7 @@ cr.plugins_.GD_SDK = function(runtime) {
       });
     cr.logexport("PreloadRewardedAd");
 
-    this.isShowingBannerAd = true;
+    this.isShowingBannerAd = false;
   };
 
   Acts.prototype.PlayLog = function() {
