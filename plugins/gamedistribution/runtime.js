@@ -82,6 +82,15 @@ cr.plugins_.GD_SDK = function(runtime) {
       self.runtime.trigger(cr.plugins_.GD_SDK.prototype.cnds.onPauseGame, self);
     };
 
+    this.gdsdk["onPreloadedAd"] = function() {
+      cr.logexport("Gamedistribution.com SDK: onPreloadedAd");
+      self.isShowingBannerAd = true;
+      self.runtime.trigger(
+        cr.plugins_.GD_SDK.prototype.cnds.onPreloadedAd,
+        self
+      );
+    };
+
     // Init GdApi
     this.gdsdk["InitAds"] = function() {
       window["GD_OPTIONS"] = {
