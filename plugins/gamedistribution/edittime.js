@@ -67,6 +67,15 @@ AddCondition(
   "Called when a rewarded ad preloaded",
   "onPreloadedAd"
 );
+AddCondition(
+  7,
+  cf_trigger,
+  "On Rewarded Watch Complete",
+  "Ads",
+  "On Rewarded Watch Complete",
+  "Called when a rewarded ad watch complete",
+  "onRewardedWatchComplete"
+);
 
 // Actions
 AddStringParam("Key Name", "Key for analytics");
@@ -161,7 +170,7 @@ function IDEObjectType() {
 }
 
 // Called by IDE when a new object instance of this type is to be created
-IDEObjectType.prototype.CreateInstance = function(instance) {
+IDEObjectType.prototype.CreateInstance = function (instance) {
   return new IDEInstance(instance);
 };
 
@@ -183,18 +192,18 @@ function IDEInstance(instance, type) {
   this.just_inserted = false;
 }
 
-IDEInstance.prototype.OnCreate = function() {};
+IDEInstance.prototype.OnCreate = function () { };
 
-IDEInstance.prototype.OnInserted = function() {};
+IDEInstance.prototype.OnInserted = function () { };
 
-IDEInstance.prototype.OnDoubleClicked = function() {};
+IDEInstance.prototype.OnDoubleClicked = function () { };
 
 // Called by the IDE after a property has been changed
-IDEInstance.prototype.OnPropertyChanged = function(property_name) {};
+IDEInstance.prototype.OnPropertyChanged = function (property_name) { };
 
-IDEInstance.prototype.OnRendererInit = function(renderer) {};
+IDEInstance.prototype.OnRendererInit = function (renderer) { };
 
 // Called to draw self in the editor
-IDEInstance.prototype.Draw = function(renderer) {};
+IDEInstance.prototype.Draw = function (renderer) { };
 
-IDEInstance.prototype.OnRendererReleased = function(renderer) {};
+IDEInstance.prototype.OnRendererReleased = function (renderer) { };

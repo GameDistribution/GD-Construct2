@@ -6,17 +6,17 @@ assert2(cr.plugins_, "cr.plugins_ not created");
 
 /////////////////////////////////////
 // Plugin class
-cr.plugins_.GD_SDK = function(runtime) {
+cr.plugins_.GD_SDK = function (runtime) {
   this.runtime = runtime;
 };
 
-(function() {
+(function () {
   /////////////////////////////////////
   var pluginProto = cr.plugins_.GD_SDK.prototype;
 
   /////////////////////////////////////
   // Object type class
-  pluginProto.Type = function(plugin) {
+  pluginProto.Type = function (plugin) {
     this.plugin = plugin;
     this.runtime = plugin.runtime;
   };
@@ -24,11 +24,11 @@ cr.plugins_.GD_SDK = function(runtime) {
   var typeProto = pluginProto.Type.prototype;
 
   // called on startup for each object type
-  typeProto.onCreate = function() {};
+  typeProto.onCreate = function () { };
 
   /////////////////////////////////////
   // Instance class
-  pluginProto.Instance = function(type) {
+  pluginProto.Instance = function (type) {
     this.type = type;
     this.runtime = type.runtime;
     window["gdsdk"] = {};
@@ -40,7 +40,7 @@ cr.plugins_.GD_SDK = function(runtime) {
   var isSupported = false;
 
   // called whenever an instance is created
-  instanceProto.onCreate = function() {
+  instanceProto.onCreate = function () {
     if (!window["gdsdk"] && !window["GD_OPTIONS"]) {
       cr.logexport(
         "[Construct 2] Gamedistribution.com SDK is required to show advertisements within Cordova; other platforms are not supported."
@@ -55,19 +55,19 @@ cr.plugins_.GD_SDK = function(runtime) {
     // Attach events
     var self = this;
 
-    this.gdsdk["onInit"] = function() {
+    this.gdsdk["onInit"] = function () {
       cr.logexport("Gamedistribution.com SDK: onInit");
       self.isShowingBannerAd = false;
       self.runtime.trigger(cr.plugins_.GD_SDK.prototype.cnds.onInit, self);
     };
 
-    this.gdsdk["onError"] = function() {
+    this.gdsdk["onError"] = function () {
       cr.logexport("Gamedistribution.com SDK: onError");
       self.isShowingBannerAd = true;
       self.runtime.trigger(cr.plugins_.GD_SDK.prototype.cnds.onError, self);
     };
 
-    this.gdsdk["onResumeGame"] = function() {
+    this.gdsdk["onResumeGame"] = function () {
       cr.logexport("Gamedistribution.com SDK: onResume");
       self.isShowingBannerAd = false;
       self.runtime.trigger(
@@ -76,13 +76,13 @@ cr.plugins_.GD_SDK = function(runtime) {
       );
     };
 
-    this.gdsdk["onPauseGame"] = function() {
+    this.gdsdk["onPauseGame"] = function () {
       cr.logexport("Gamedistribution.com SDK: onPauseGame");
       self.isShowingBannerAd = true;
       self.runtime.trigger(cr.plugins_.GD_SDK.prototype.cnds.onPauseGame, self);
     };
 
-    this.gdsdk["onPreloadedAd"] = function() {
+    this.gdsdk["onPreloadedAd"] = function () {
       cr.logexport("Gamedistribution.com SDK: onPreloadedAd");
       self.isShowingBannerAd = true;
       self.runtime.trigger(
@@ -91,15 +91,21 @@ cr.plugins_.GD_SDK = function(runtime) {
       );
     };
 
+    this.gdsdk["onRewardedWatchComplete"] = function () {
+      cr.logexport("Gamedistribution.com SDK: onRewardedWatchComplete");
+      self.isShowingBannerAd = false;
+      self.runtime.trigger(cr.plugins_.GD_SDK.prototype.cnds.onRewardedWatchComplete, self);
+    };
+
     // Init GdApi
-    this.gdsdk["InitAds"] = function() {
+    this.gdsdk["InitAds"] = function () {
       window["GD_OPTIONS"] = {
         gameId: self.properties[0],
         // userId: self.properties[1],
         advertisementSettings: {
           autoplay: false
         },
-        onEvent: function(event) {
+        onEvent: function (event) {
           switch (event.name) {
             case "SDK_GAME_START":
               self.gdsdk["onResumeGame"]();
@@ -113,10 +119,13 @@ cr.plugins_.GD_SDK = function(runtime) {
             case "SDK_ERROR":
               self.gdsdk["onError"]();
               break;
+            case "SDK_REWARDED_WATCH_COMPLETE":
+              self.gdsdk["onRewardedWatchComplete"]();
+              break;
           }
         }
       };
-      (function(d, s, id) {
+      (function (d, s, id) {
         var js,
           fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -130,29 +139,33 @@ cr.plugins_.GD_SDK = function(runtime) {
 
   //////////////////////////////////////
   // Conditions
-  function Cnds() {}
+  function Cnds() { }
 
-  Cnds.prototype.IsShowingBanner = function() {
+  Cnds.prototype.IsShowingBanner = function () {
     return this.isShowingBannerAd;
   };
 
-  Cnds.prototype.onInit = function() {
+  Cnds.prototype.onInit = function () {
     return true;
   };
 
-  Cnds.prototype.onError = function(data) {
+  Cnds.prototype.onError = function (data) {
     return true;
   };
 
-  Cnds.prototype.onResumeGame = function(data) {
+  Cnds.prototype.onResumeGame = function (data) {
     return true;
   };
 
-  Cnds.prototype.onPauseGame = function(data) {
+  Cnds.prototype.onPauseGame = function (data) {
     return true;
   };
 
-  Cnds.prototype.onPreloadedAd = function(data) {
+  Cnds.prototype.onPreloadedAd = function (data) {
+    return true;
+  };
+
+  Cnds.prototype.onRewardedWatchComplete = function (data) {
     return true;
   };
 
@@ -160,9 +173,9 @@ cr.plugins_.GD_SDK = function(runtime) {
 
   //////////////////////////////////////
   // Actions
-  function Acts() {}
+  function Acts() { }
 
-  Acts.prototype.ShowAd = function() {
+  Acts.prototype.ShowAd = function () {
     if (!isSupported) return;
 
     if (typeof window["gdsdk"]["showAd"] === "undefined") {
@@ -179,7 +192,7 @@ cr.plugins_.GD_SDK = function(runtime) {
     this.isShowingBannerAd = true;
   };
 
-  Acts.prototype.ShowRewardedAd = function() {
+  Acts.prototype.ShowRewardedAd = function () {
     if (!isSupported) return;
 
     if (typeof window["gdsdk"]["showAd"] === "undefined") {
@@ -196,7 +209,7 @@ cr.plugins_.GD_SDK = function(runtime) {
     this.isShowingBannerAd = true;
   };
 
-  Acts.prototype.PreloadRewardedAd = function() {
+  Acts.prototype.PreloadRewardedAd = function () {
     if (!isSupported) return;
 
     if (typeof window["gdsdk"]["preloadAd"] === "undefined") {
@@ -208,7 +221,7 @@ cr.plugins_.GD_SDK = function(runtime) {
     }
 
     window["gdsdk"]
-      ["preloadAd"]("rewarded")
+    ["preloadAd"]("rewarded")
       .then(() => {
         this.gdsdk["onPreloadedAd"]();
       })
@@ -221,7 +234,7 @@ cr.plugins_.GD_SDK = function(runtime) {
     this.isShowingBannerAd = false;
   };
 
-  Acts.prototype.PlayLog = function() {
+  Acts.prototype.PlayLog = function () {
     if (!isSupported) return;
 
     // if (typeof window["gdsdk"]["play"] === "undefined") {
@@ -233,7 +246,7 @@ cr.plugins_.GD_SDK = function(runtime) {
     // window["gdsdk"]["play"]();
   };
 
-  Acts.prototype.CustomLog = function() {
+  Acts.prototype.CustomLog = function () {
     if (!isSupported) return;
 
     // if (typeof window["gdsdk"]["customLog"] === "undefined") {
@@ -245,7 +258,7 @@ cr.plugins_.GD_SDK = function(runtime) {
     // window["gdsdk"]["customLog"]();
   };
 
-  Acts.prototype.InitAds = function() {
+  Acts.prototype.InitAds = function () {
     if (!isSupported) return;
 
     this.gdsdk["InitAds"]();
@@ -255,7 +268,7 @@ cr.plugins_.GD_SDK = function(runtime) {
 
   //////////////////////////////////////
   // Expressions
-  function Exps() {}
+  function Exps() { }
 
   pluginProto.exps = new Exps();
 })();
